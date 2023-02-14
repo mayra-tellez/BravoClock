@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 function Stopwatch() {
 	const [time, setTime] = useState(0);
 	const [start, setStart] = useState(false);
-	
 
 	useEffect(() => {
 		let interval = null;
@@ -26,25 +25,12 @@ function Stopwatch() {
 		<div>
 			<div>
 			<div id='Rules'>
-					<h1>EBI OT </h1>
+					<h1>EBI OVERTIME </h1>
 					
-							<h3>1 ROUND MINIMUM / 3 ROUNDS MAXIMUM </h3>
-							<h5>
-							OFFENSIVE PLAYER DECIDES: </h5>
-							<p>BACK CONTROL - seatbelt grip and two hooks </p>
-							OR 
-							<p>Spiderweb Armbar - single deep hook, other hand flat on mat </p>
-							<p>WINNER IS CHOSEN BY</p>
-							<h4>FASTEST SUBMISSION</h4>
-							<h6>OR</h6>
-							<h4>FASTEST ESCAPE TIME</h4>
-
-					
+							<h3> EACH PLAYER - 1 ROUND MINIMUM / 3 ROUNDS MAXIMUM </h3>
+								<p>The referee will award the choice of offense or defense to the player they determine to have been closest to achieving a submission during regulation. The player who attacks first will be considered the Red Player, and the player that defends first will be considered the Blue Player. </p>					
 				</div>
-				<div id='Times'>
-					<h6>Here will be inputs for names and a recording of the times</h6>
-				</div>
-				<h6>The player deemed by the referee to have been more aggressive during the match will attempt to submit first</h6>
+				
 				<h2>TIMER</h2>
 				<span className="time">{minutes}:</span>
 				<span className="time">{seconds}:</span>
@@ -72,10 +58,24 @@ function Stopwatch() {
 				
 			</div>
 			<div>
-					<button onClick={() => setTime(0)}>Save A</button>
+					<button> Submission </button><br></br>
+					{/* button records displayed time plus " -SUB" */}
+					<button> Escape </button>
+					{/* button records displayed time plus " -ESC" */}
 				</div>
-				<div>
-					<button onClick={() => setTime(0)}>Save B</button>
+				
+				<div id='Times'>
+				<div class="row">
+  				<div class="column">
+					
+    					<h2>Red Times</h2>
+    					<p>0:00</p>
+ 				 </div>
+  <div class="column">
+    <h2>Blue Times</h2>
+    <p>0:00</p>
+  </div>
+</div>
 				</div>
 		</div>
 	);

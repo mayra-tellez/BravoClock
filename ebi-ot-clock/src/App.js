@@ -9,4 +9,5 @@ function App() {
   );
 }
 
+// if you need to edit the stopwatch go to stopwatch.jsx
 export default App;
