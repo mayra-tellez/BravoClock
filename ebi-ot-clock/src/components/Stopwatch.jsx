@@ -3,6 +3,28 @@ import React, { useState, useEffect } from 'react';
 function Stopwatch() {
 	const [time, setTime] = useState(0);
 	const [start, setStart] = useState(false);
+	const [redEntries, setRedEntries] = useState([]);
+	const [blueEntries, setBlueEntries] = useState([]);
+	const [iteration, setIteration] = useState(1);
+
+	const getTimeStr = (millis) => {
+		let minutes = ('0' + Math.floor((millis / 60000) % 60)).slice(-2);
+		let seconds = ('0' + Math.floor((millis / 1000) % 60)).slice(-2);
+		let milliseconds = ('0' + ((millis / 10) % 1000)).slice(-2);
+		return `${minutes}:${seconds}:${milliseconds}`;
+	}
+
+	const onEndIteration = (wasSub) => {
+		const iterationSuffix = wasSub ? "-SUB" : "-ESC";
+		const timeStr = getTimeStr(time);
+		if (iteration % 2 === 0) {
+			setBlueEntries(blueEntries.concat(timeStr + iterationSuffix))
+		} else {
+			setRedEntries(redEntries.concat(timeStr + iterationSuffix))
+		}
+		setIteration(iteration + 1)
+		setTime(0);
+	}
 
 	useEffect(() => {
 		let interval = null;
@@ -58,9 +80,9 @@ function Stopwatch() {
 				
 			</div>
 			<div>
-					<button> Submission </button><br></br>
+					<button onClick={onEndIteration.bind(this, true)}> Submission </button><br></br>
 					{/* button records displayed time plus " -SUB" */}
-					<button> Escape </button>
+					<button onClick={onEndIteration.bind(this, false)}> Escape </button>
 					{/* button records displayed time plus " -ESC" */}
 				</div>
 				
@@ -69,11 +91,11 @@ function Stopwatch() {
   				<div class="column">
 					
     					<h2>Red Times</h2>
-    					<p>0:00</p>
+						{redEntries.map(entry => (<p>{entry}</p>))}
  				 </div>
   <div class="column">
     <h2>Blue Times</h2>
-    <p>0:00</p>
+	{blueEntries.map(entry => (<p>{entry}</p>))}
   </div>
 </div>
 				</div>
