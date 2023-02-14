@@ -90,11 +90,15 @@ function Stopwatch() {
 				<div class="row">
   				<div class="column">
 					
-    					<h2>Red Times</h2>
-						{redEntries.map(entry => (<p>{entry}</p>))}
+				  <h4>Input athlete name here</h4>
+					<input type="text" maxlength="15"></input>
+					<h4>Times will display below</h4>
+					{redEntries.map(entry => (<p>{entry}</p>))}
  				 </div>
   <div class="column">
-    <h2>Blue Times</h2>
+    <h4>Input athlete name here</h4>
+	<input type="text" maxlength="15"></input>
+	<h4>Times will display below</h4>
 	{blueEntries.map(entry => (<p>{entry}</p>))}
   </div>
 </div>
