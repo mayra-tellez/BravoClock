@@ -1,44 +1,138 @@
+/* ------------------------------------------ */
+/* ------------- App styles START ----------- */
+/* ------------------------------------------ */
+
+/* Global style variables. The values can be changed here and will automatically apply to all elements with that variable name. */
+:root {
+  --purple: #BB86FC;
+	--red: #ff5c00;
+  --blue: rgb(0, 174, 255);
+  --background: #121212;
+  --lighter-background: #1e1e1e;
+  --on-purple: #000000;
+  --on-background: #FFFFFF;
+  --on-lighter-background: #FFFFFF;
+	--space-font: 'Space Mono', monospace;
+	--round-corner: 3px;
+}
+
+html, body, #root {
+	height: 100%;
+	background-color: var(--background);
+}
+
 .App {
+	height: 100%;
 	text-align: center;
 }
+/* ------------------------------------------ */
+/* ------------- App styles END ----------- */
+/* ------------------------------------------ */
 
-.App-logo {
-	height: 40vmin;
-	pointer-events: none;
+/* ------------------------------------------ */
+/* --------- Stopwatch styles START --------- */
+/* ------------------------------------------ */
+h1, h2, h3 {
+	font-family: var(--space-font);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
-	}
+h1, h2 {
+	margin-top: 0;
 }
 
-.App-header {
-	background-color: #282c34;
-	min-height: 100vh;
+h4 {
+	margin-top: 1%;
+	margin-bottom: 1%;
+	font-weight: 500;
+	color: gray;
+}
+
+#Container {
+	box-sizing: border-box;
+	padding: 5%;
+	display: grid;
+	grid-template-areas: 
+	"rules"
+	"watch"
+	"times";
+	row-gap: 25px;
+}
+
+
+/* ----------------------------------- */
+/* --------- Rules div START --------- */
+#Rules {
+	grid-area: rules;
+	color: var(--on-lighter-background);
+}
+
+#Rules > .instructions {
+	padding: 1%;
+	border-radius: var(--round-corner);
+	background-color: var(--lighter-background);
+}
+
+.page-title-div {
+	display: grid;
+}
+
+.page-title-div h1 {
+	text-align: center;
+	font-size: 3rem;
+	/* font-style: italic; */
+	grid-column: 1;
+	grid-row: 1;
+}
+
+#page-title {
+	position: relative;
+}
+
+#outline-page-title {
+	margin: 5px 0 0 5px;
+	color: var(--background);
+	text-shadow:1px 0 0 var(--purple),0 1px 0 var(--purple),-1px 0 0 var(--purple),0 -1px 0 var(--purple);
+}
+
+#desktop-h3 {
+	display: none;
+}
+
+#player-rounds-span {
+	margin: 3% 6% 0 6%;
+	padding: 5% 0;
+	border: 1px solid var(--purple);
+	display: block;
+}
+/* ---------- Rules div END ---------- */
+/* ----------------------------------- */
+
+
+/* ----------------------------------- */
+/* --------- Watch div START --------- */
+#Watch {
+	grid-area: watch;
+	height: 400px;
+	color: var(--on-background);
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-content: center;
-	font-size: calc(10px + 2vmin);
-	color: white;
 }
 
-.App-link {
-	color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+#Watch-container {
+	width: 100%;
+	border-radius: var(--round-corner);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	justify-self: center;
+	background-color: var(--lighter-background);
 }
 
 .time {
-	font-size: 3rem;
+	margin: 15px 0;
+	display: inline-block;
+	font-size: 4rem;
 	font-weight: 500;
 	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
 		'Lucida Sans', Arial, sans-serif;
@@ -51,33 +145,266 @@
 	gap: 1rem;
 }
 
-.Rules {
-	display: flex; 
-}
 button {
 	padding: 0.5rem 1rem;
 	margin-top: 1rem;
+	border-radius: var(--round-corner);
 	font-size: 1.4rem;
-	font-weight: bold;
-	border-radius: 8px;
-	/* color: white; */
+	background-color: var(--lighter-background);
+	font-family: var(--space-font);
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+}	
+
+button:hover {
+	cursor: pointer;
 }
-.row {
-	display: flex;
-  }
-  
-  /* Create two equal columns that sits next to each other */
-  .column {
-	flex: 50%;
-	padding: 10px;
-	height: 300px; /* Should be removed. Only for demonstration */
-  }
+
 #start {
-	background-color: green;
-	color: white;
+	border: solid 1px var(--on-lighter-background);
+	background-color: var(--purple);
+	color: var(--on-purple);
 }
 
 #stop {
-	background-color: red;
-	color: white;
+	border: solid 1px var(--on-lighter-background);
+	background-color: var(--red);
 }
+
+#reset {
+	border: solid 1px var(--on-lighter-background);
+	color: var(--on-lighter-background);
+}
+
+#start, #stop, #reset {
+	width: 100px;
+	margin-bottom: 1rem;
+}
+
+#start:hover {
+	box-shadow: 0 3px 15px 3px var(--purple);
+}
+
+#stop:hover {
+	box-shadow: 0 3px 15px 3px var(--red);
+}
+
+#reset:hover {
+	border: solid 1px var(--purple);
+	color: var(--purple);
+}
+
+#sub, #esc {
+	width: calc(200px + 1rem);
+	border: solid 1px var(--purple);
+	color: var(--purple);
+}
+
+#sub:hover, #esc:hover {
+	border: solid 1px var(--on-lighter-background);
+	color: var(--on-lighter-background);
+}
+/* ---------- Watch div END ---------- */
+/* ----------------------------------- */
+
+/* ----------------------------------- */
+/* --------- Times div START --------- */
+#Times {
+	grid-area: times;
+	border-radius: var(--round-corner);
+	background-color: var(--lighter-background);
+	color: var(--on-lighter-background);
+}
+
+.row {
+	display: flex;
+	flex-direction: column;
+}
+
+/* Create two equal columns that sits next to each other */
+.column {
+	flex: 50%;
+	margin-bottom: 15%;
+}
+
+input {
+	margin-top: 5%;
+	width: 75%;
+	height: 30px;
+	padding: 3%;
+	text-align: center;
+	caret-color: var(--purple);
+	background-color: var(--lighter-background);
+	border: none;
+	border-bottom: 2px solid var(--purple);
+	font-size: 25px;
+	font-family: var(--space-font);
+	text-transform: uppercase;
+}
+
+input::placeholder {
+	font-size: 25px;
+}
+
+input:focus {
+	outline: none;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+#red-input {
+	color: var(--red);
+}
+
+#blue-input {
+	color: var(--blue);
+}
+
+#red-input:focus, #red-input:not(:placeholder-shown) {
+	border-bottom: 2px solid var(--red);
+}
+
+#blue-input:focus, #blue-input:not(:placeholder-shown) {
+	border-bottom: 2px solid var(--blue);
+}
+
+.time-entry {
+	font-size: 25px;
+}
+/* ---------- Times div END ---------- */
+/* ----------------------------------- */
+
+
+/* ------------------------------------------- */
+/* ----------- Media Queries START ----------- */
+/* ------------------------------------------- */
+
+/* app was styled with mobile first approach, so media queries are for tablet size and up */
+
+/* medium devices (landscape tablet, 768px and up) */
+@media screen and (min-width: 768px) {
+	#Container {
+		padding-top: 3%;
+		grid-template-rows: 1fr 30% 1fr;
+	}
+
+	#desktop-h3 {
+		display: block;
+	}
+
+	#mobile-h3 {
+		display: none;
+	}
+
+	#desktop-h3 {
+		color: var(--purple);
+	}
+
+	#Watch {
+		width: 100%;
+		height: 150px;
+		padding: 0 4%;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.time {
+		margin: 0;
+	}
+
+	.btn-container {
+		flex-direction: column;
+		gap: 0;
+	}
+
+	#start, #stop, #reset {
+		margin-top: 1rem;
+		margin-bottom: 0;
+	}
+
+	.row {
+		flex-direction: row;
+	}
+}
+
+/* large devices (laptops/desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+	#Container {
+		height: 100%;
+		padding: 0 1% 1% 1%;
+		grid-template-areas: 
+		"rules rules"
+		"watch times";		
+		grid-template-rows: 30% 70%;
+		grid-template-columns: 33% 66%;
+		column-gap: 1%;
+		row-gap: 0;
+	}
+
+	#Watch {
+		box-sizing: border-box;
+		padding: 8% 0 25% 0;
+		height: 100%;
+		flex-direction: column;
+	}
+
+	#Rules {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	#Rules > .instructions {
+		width: 75%;
+		padding: 0 .5% .5% .5%;
+	}
+
+	.page-title-div {
+		padding-left: 2%;
+	}
+
+	.page-title-div h1 {
+		text-align: start;
+		font-size: 3.5rem;
+	}
+
+	#page-title {
+		margin-bottom: 0;
+	}
+
+	.btn-container {
+		flex-direction: row;
+		gap: 1rem;
+	}
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media screen and (min-width: 1200px) {
+	.page-title-div h1 {
+		font-size: 4rem;
+	}
+
+	#Rules {
+		justify-content: space-around;
+	}
+
+	#Rules > .instructions {
+		width: 50%;
+		padding: 0 1% 1% 1%;
+	}
+
+	.time {
+		font-size: 5rem;
+	}
+}
+/* ------------------------------------------- */
+/* ----------- Media Queries END ----------- */
+/* ------------------------------------------- */
+
+
+/* ------------------------------------------ */
+/* --------- Stopwatch styles END --------- */
+/* ------------------------------------------ */
